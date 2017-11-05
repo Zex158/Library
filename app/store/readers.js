@@ -1,7 +1,7 @@
 var data = {
     readers: [
         {
-            name: '离散',
+            name: '张离散',
             age: '15',
             sex: 'male',
             createDate: new Date('2017/01/05'),
@@ -36,21 +36,21 @@ var data = {
             level: 3,
             id: 5
         }, {
-            name: '热撒旦',
+            name: '王武',
             age: '35',
             sex: 'male',
             createDate: new Date('2016/01/05'),
             level: 2,
             id: 6
         }, {
-            name: '到底散',
+            name: '赵柳',
             age: '56',
             sex: 'male',
             createDate: new Date('2016/11/05'),
             level: 3,
             id: 7
         }, {
-            name: '快捷',
+            name: '李洁琦',
             age: '25',
             sex: 'female',
             createDate: new Date('2017/01/05'),

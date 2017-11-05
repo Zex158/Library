@@ -31,7 +31,11 @@ Ext.define('App.view.Reader', {
         }, {
             header: '等级',
             flex: 1,
-            dataIndex: 'level'
+            dataIndex: 'level',
+            renderer: function(v) {
+                var arr = ['普通会员', '白银会员', '<span style = "color: #00f">黄金会员</span>'];
+                return arr[v - 1];
+            }
         }
     ],
     tbar: {
@@ -103,9 +107,10 @@ function editReader(){
     }
 }
 
+//弹出编辑或添加窗口
+//rec为编辑窗口回显数据
 function addWin(rec){
     var me = this;
-
     var win = Ext.create('Ext.window.Window', {
         title: rec ? '编辑' : '添加',
         modal: true,
@@ -141,8 +146,7 @@ function addWin(rec){
                         {
                             boxLabel: '男',
                             name: 'sex',
-                            inputValue: 'male',
-                            checked: true
+                            inputValue: 'male'
                         }, {
                             boxLabel: '女',
                             name: 'sex',
@@ -164,8 +168,7 @@ function addWin(rec){
                         {
                             boxLabel: '普通',
                             name: 'level',
-                            inputValue: 1,
-                            checked: true
+                            inputValue: 1
                         }, {
                             boxLabel: '白银',
                             name: 'level',
@@ -180,15 +183,17 @@ function addWin(rec){
             ]
         }],
         listeners: {
+            //窗口显示
             show: function(){
                 if (rec){
                     var form = win.down('form');
                     var infos = form.items.items;
                     infos[0].setValue(rec.get('name'));
                     infos[1].setValue(rec.get('age'));
-                    infos[2].setValue(rec.get('sex'));
+                    //radiogroup需要如此设置
+                    infos[2].setValue({sex:rec.get('sex')});
                     infos[3].setValue(rec.get('createDate'));
-                    infos[4].setValue(rec.get('level'));
+                    infos[4].setValue({level: rec.get('level')});
                 }
             }
         },
